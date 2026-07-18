@@ -1,0 +1,124 @@
+= HTML Slides Spec
+:sectnums: 
+:toclevels: 3
+:toc:
+
+== Definition of a slide
+
+A slide defines as a ordered set of _selected HTML elements_ between two heading level elements including the first of the two heading element but excluding the second of the two. The heading level does not matter. A slide is represented by a HTML `<section>` element.
+
+Implementations may allow the user to choose which heading levels get their own slide (main slide) and which one do not get their own slide and thus are shown as part of another slide (sub slide).
+
+=== Title slide
+
+[.show_on_slide]
+A title slide contains a maximum of one `<h1>` tag and goes up to but excluding the first `<h2>` element.
+
+A title slide is a `<section>` HTML element. Its first child is a HTML `<h1>`. A generic `<div>` element follows as second child of the `<section>`. Both remain the only children of the `<section>`. A `<section>` has the class `slide` and only two direct children.
+
+=== Main slide
+
+[.show_on_slide]
+Main slides are those not having another slide as its parent and have the class `slide`.
+
+A main slide is a `<section>` HTML element. Its first child is a HTML heading element. A generic `<div>` element follows as second child of the `<section>`. Both remain the only children of the `<section>`. A `<section>` has the class `slide` and only two direct children.
+
+.Example of how such a slide looks in HTML pseudo code
+[source,html]
+----
+<section class="slide">
+	<hX></hX>
+	<div>
+		<!-- selected HTML elements in order -->
+	</div>
+</section>
+----
+
+[.show_on_slide]
+.Example using a <h1> HTML heading element
+[source,html]
+----
+<section class="slide">
+	<h1></h1>
+	<div>
+		<!-- selected HTML elements in order -->
+	</div>
+</section>
+----
+
+=== Sub slide
+
+[.show_on_slide]
+A Sub slide has a `<section>` HTML element with class `slide` or `subslide` as its parent.
+
+It has a HTML heading element as its first child. A generic `<div>` follows as second child. Both remain the only children of the `<section>`. Such a `<section>` has the classes `subslide` and `subslide_X` where `X` is the placeholder for the heading level of the first child.
+
+.Example of how such a subslide looks in HTML pseudo code
+[source,html]
+----
+<section class="subslide subslide_X">
+	<hX></hX>
+	<div>
+		<!-- selected HTML elements in order -->
+	</div>
+</section>
+----
+
+[.show_on_slide]
+.Example using a <h3> HTML heading element
+[source,html]
+----
+<section class="subslide subslide_3">
+	<h3></h3>
+	<div>
+		<!-- selected HTML elements in order -->
+	</div>
+</section>
+----
+
+== Class names on a slide
+
+Classes defined on the parent of the HTML heading element **in the original DOM** must be applied to the `<section>` HTML element in the target DOM.
+
+[.show_on_slide]
+.Example: Structure in source
+[source,html]
+----
+<div class="custom-slide-class">
+	<h2>An heading text</h2>
+	<!-- More content -->
+</div>
+----
+
+The structure on the source has the class `custom-slide-class` applied **on the parent** of the `<h2>` heading element. The heading `<h2>` HTML element here just serves as an example as the heading level does not matter.
+
+[.show_on_slide]
+.Example: Structure as main slide
+[source,html]
+----
+<section class="slide custom-slide-class">
+	<h2>An heading text</h2>
+	<div>
+		<!-- More content -->
+	</div>
+</section>
+----
+
+== Content of a slide (selected HTML elements)
+
+Not everything between two heading elements should be on the slide. Implementations must make sure that only elements matching any of the following criteria are included:
+
+.Include elements in a slide matching any of these criterias
+* the first image
+* the first unordered list
+* the first ordered list
+* the first figure
+* all heading levels from `h1` up to `h6`
+* all elements with class `show_on_slide`
+
+If elements match one of these criterias, they and their children must be added to the slide without changing their attributes and internal DOM structure.
+
+== Empty generic `<div>`
+
+[.show_on_slide]
+If the generic `<div>` HTML element as a direct child of a `<section>` will be empty, it must be removed from the target DOM. This rule only applies if the section has one of the class names `slide` or `subslide`.

@@ -10,8 +10,6 @@ node_modules
 desktop-integration
 dist
 package-lock.json
-docs
-*.adoc
 examples-slide
 offline.js
 .vscode

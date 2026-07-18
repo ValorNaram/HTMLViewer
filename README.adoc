@@ -1,0 +1,25 @@
+= HTML Viewer
+
+Imagine a world where content can be presented and visualized differently according to different needs. Focus on a clean structure, a red line and on content readers can follow along. Let technology do the heavy lifting of generating slides or a handout out of it. Just create the document in your favourite authoring tool, export into HTML and open it with _HTML Viewer_.
+
+This repo currently does not accept Pull Requests as it is in early stage. Do not use this project productively, it it just not ready yet.
+
+**This projekt is in its early beta.**
+
+== User manual
+
+There is still no user manuals. The following will be created:
+
+* How to use this tool?
+* What is a HTML file and how to create it?
+* What will be shown on slides?
+* What is a CSS file and how to create it?
+
+== Technical
+
+* link:docs/slide/spec.adoc[Slide Spec]
++
+An algorithm converts the document into slides. This specification describes how this is done and what the slides are allowed to contain.
+* link:docs/desktop-integration[Compiling a desktop integration (experimental)]
++
+A very experimental idea for a desktop integration working on linux systems only. This allows to open files with file extension `.embed.html` from file browser.

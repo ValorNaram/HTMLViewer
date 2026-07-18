@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="text/x-embed-html">
+    <comment>Embedded HTML file</comment>
+    <glob pattern="*.embed.html"/>
+    <icon name="text-html"/>
+  </mime-type>
+</mime-info>

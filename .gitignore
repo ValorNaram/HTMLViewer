@@ -7,7 +7,6 @@ _ai.css
 *.pdf
 node_modules
 *.py
-desktop-integration
 dist
 package-lock.json
 examples-slide

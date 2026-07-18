@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=HTML Viewer (Embedded)
+Comment=Open and compile embedded HTML files
+Exec=/usr/bin/compile_html_viewer %F
+Terminal=false
+Type=Application
+MimeType=text/x-embed-html;
+Categories=Utility;TextTools;
+Keywords=html;embed;compile;
+StartupNotify=true

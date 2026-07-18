@@ -1,0 +1,221 @@
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg-color: black;
+		--text-color: hsl(0, 0%, 75%);
+		--focus-color: rgb(255, 174, 0);
+		/* --border-color-primary: var(--text-color); */
+		--border-color-primary: var(--text-color);
+		/* --border-color-secondary: hsl(308, 100%, 37%); */
+		/* --bg-color-secondary: hsl(308, 100%, 11%); */
+		--border-color-secondary: hsl(209, 100%, 50%);
+		--bg-color-secondary: inherit;
+		/* --bg-color-interactivity: rgb(41, 41, 0); */
+		/* --bg-color-interactivity: rgb(0, 85, 79); */
+		--bg-color-interactivity: hsl(209, 100%, 15%);
+		--fg-color-interactivity: var(--text-color);
+		--fg-color-linktext: hsl(200, 100%, 63%);
+		--fg-color-linktext-visited: hsl(297, 100%, 63%);
+		--bg-color-interactivity-gradient: linear-gradient(90deg, rgba(255,255,255, 0) 0%, var(--bg-color-interactivity) 20%, var(--bg-color-interactivity) 80%, rgba(255, 255, 255, 0) 100%);
+	/* --bg-color-interactivity-gradient: linear-gradient(90deg, var(--bg-color-interactivity) 80%, rgba(255, 255, 255, 0) 100%); */
+	}
+
+	html {
+		scrollbar-color: var(--focus-color) var(--bg-color-interactivity);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--bg-color: rgb(243, 242, 241);
+		--text-color: black;
+		--focus-color: rgb(255, 85, 0);
+		--border-color-primary: black;
+		/* --border-color-secondary: darkcyan; */
+		--border-color-secondary: hsl(209, 100%, 29%);
+		/* --bg-color-secondary: hsl(180, 100%, 85%); */
+		--bg-color-secondary: inherit;
+		/* --bg-color-interactivity: lightyellow; */
+		/* --bg-color-interactivity: hsl(221, 100%, 80%); */
+		--bg-color-interactivity: hsl(220, 100%, 91%);
+		--fg-color-interactivity: var(--text-color);
+		--bg-color-interactivity-gradient: var(--bg-color-interactivity);
+		--bg-color-interactivity-gradient: linear-gradient(90deg, rgb(255,255,255) 0%, var(--bg-color-interactivity) 20%, var(--bg-color-interactivity) 80%, rgb(255, 255, 255) 100%)
+	}
+
+	html {
+		scrollbar-color: var(--focus-color) var(--border-color-primary);
+	}
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	line-height: 1.8em;
+
+	background-color: var(--bg-color);
+	color: var(--text-color);
+}
+
+html {
+	overflow: scroll;
+	scrollbar-width: auto;
+}
+
+a {
+	color: var(--fg-color-linktext);
+}
+
+a:visited {
+	color: var(--fg-color-linktext-visited);
+}
+
+*:focus {
+	outline: 0.5em dotted var(--focus-color);
+	outline-offset: 0.5em;
+}
+
+/* Ruleset: Make it appear visually that the label has focus and not the input child inside */
+/* Rule: Show focus on label visually */
+label:focus-within {
+	outline: 0.5em dotted var(--focus-color);
+	outline-offset: 0.5em;
+}
+
+/* Rule: Hide focus on focusable element if it is a child of a label element */
+label:focus-within > *:focus {
+	outline: none;
+	outline-offset: none;
+}
+
+*[hidden] {
+	display: none !important;
+}
+
+*[data-i18n="app_slogan"] {
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	word-spacing: 0.25em;
+	text-align: center;
+	color: var(--border-color-secondary);
+}
+
+form {
+	height: 100%;
+	box-sizing: border-box;
+}
+
+form label {
+	display: block;
+	cursor: pointer;
+	padding: 0.2em;
+}
+
+form > div {
+	padding: 1em 0;
+	width: 100%;
+}
+
+form input[type=file], form input[type=button] {
+	border: 0.2em solid var(--border-color-primary);
+	padding: 1em;
+	border-radius: 0.5em;
+	cursor: pointer;
+	background: var(--bg-color-interactivity-gradient);
+	color: var(--fg-color-interactivity);
+	transition: box-shadow 0.2s ease;
+	font-weight: bold;
+	min-width: 100%;
+	box-sizing: border-box;
+}
+
+form input[type=file]:hover, form input[type=button]:hover {
+	box-shadow: 0em 0.1em 1em 0.05em var(--border-color-primary);
+}
+
+#setup {
+	display: flex;
+	justify-content: center;
+	container-type: size;
+	container-name: area;
+	box-sizing: border-box;
+
+	width: 100%;
+	height: 100%;
+
+	padding: 0.5em;
+}
+
+#setup > * {
+	flex-basis: 40%;
+}
+
+@container area (max-width: 1600px) {
+	#setup>* {
+		flex-basis: 60%;
+	}
+}
+
+@container area (max-width: 1400px) {
+	#setup>* {
+		flex-basis: 70%;
+	}
+}
+
+@container area (max-width: 1200px) {
+	#setup>* {
+		flex-basis: 80%;
+	}
+}
+
+@container area (max-width: 900px) {
+	#setup > * {
+		flex-basis: 100%;
+	}
+}
+
+.options-container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.options-container > * {
+	flex: 1 0 40%;
+}
+
+.help-text {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	border: 0.2em solid var(--border-color-secondary);
+	border-radius: 0.5em;
+	padding: 1em;
+	box-sizing: border-box;
+	margin: 1em 1em;
+
+	background-color: var(--bg-color-secondary);
+	color: var(--text-color);
+}
+
+.button-group {
+	display: inline-flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
+p:first-child {
+	margin-top: 0;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
+#slideshow-container {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}

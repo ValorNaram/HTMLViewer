@@ -1,0 +1,13 @@
+{
+	"name": "Node.js Dev Container",
+	"image": "docker.io/library/node:24-alpine",
+	"shutdownAction": "stopContainer",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"esbenp.prettier-vscode",
+				"ms-vscode.vscode-typescript-next"
+			]
+		}
+	}
+}

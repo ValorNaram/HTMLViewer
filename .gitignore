@@ -1,0 +1,17 @@
+_ai.js
+_ai.css
+.old.js
+.old.css
+*.odt
+*.zip
+*.pdf
+node_modules
+*.py
+desktop-integration
+dist
+package-lock.json
+docs
+*.adoc
+examples-slide
+offline.js
+.vscode

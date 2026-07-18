@@ -1,0 +1,21 @@
+{
+  "name": "HTMLSlideshow",
+  "version": "1.0.0",
+  "description": "View html files differently from inside your web browser",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "keywords": [],
+  "author": "Sören Reinecke alias Valor Naram",
+  "license": "MIT",
+  "dependencies": {
+    "html-webpack-plugin": "^5.6.7",
+    "webpack": "^5.107.2",
+    "webpack-cli": "^7.0.3",
+    "webpack-dev-middleware": "^8.0.3",
+    "webpack-dev-server": "^5.2.5"
+  }
+}

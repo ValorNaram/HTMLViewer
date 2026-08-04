@@ -7,9 +7,10 @@ html, body {
 
 * {
 	box-sizing: border-box;
+	font-size: 25px;
 }
 
-:host > section.slide {
+section.slide {
 	padding: 0.5em;
 	width: 100%;
 	box-sizing: border-box;
@@ -22,33 +23,33 @@ html, body {
 }
 
 /* Apply only on <h2> elements in slide mode */
-:host > section.slide h2 {
+section.slide h2 {
 	text-align: center;
 }
 
 /* Apply on all headings in slides */
-:host > section.slide h1,
-:host > section.slide h2,
-:host > section.slide h3,
-:host > section.slide h4,
-:host > section.slide h5,
-:host > section.slide h6 {
+section.slide h1,
+section.slide h2,
+section.slide h3,
+section.slide h4,
+section.slide h5,
+section.slide h6 {
 	margin: 0;
 	padding: 0.5em 0;
 	font-size: 2em;
 }
 
 /* Apply only if <h3>, <h4>, <h5> or <h6> is the first child under a slide. That means they got their own slide each. */
-:host >section.slide > h3:first-child,
-:host >section.slide > h4:first-child,
-:host >section.slide > h5:first-child,
-:host >section.slide > h6:first-child {
+section.slide > h3:first-child,
+section.slide > h4:first-child,
+section.slide > h5:first-child,
+section.slide > h6:first-child {
 	text-align: center;
 }
 
 /* Apply on <img> in slide mode */
-:host > section.slide img {
-	width: 100%;
+section.slide img {
+	/* width: 100%; */
 	height: auto;
 	break-inside: avoid;
 	break-after: avoid;
@@ -56,7 +57,7 @@ html, body {
 }
 
 @media print {
-	:host > section.slide {
+	section.slide {
 		width: auto;
 		min-width: 100%;
 		break-inside: avoid;
@@ -64,14 +65,17 @@ html, body {
 		padding: 0;
 	}
 
-	:host > section.slide.instruction {
+	 section.slide.instruction {
 		display: none;
 	}
 
-	/* Remove page breaks before the first slide */
-	/* :host > section.slide:first-of-type {
-		break-before: avoid;
-		break-after: avoid;
-		break-inside: avoid;
-	} */
+	 h1, h2, h3, h4, h5, h6 {
+		page-break-after: avoid;
+		orphans: 10;
+		widows: 10;
+	}
+
+	p {
+		page-break-inside: avoid;
+	}	
 }

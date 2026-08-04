@@ -4,6 +4,7 @@ import { I18nManager, i18n_messages } from "./i18n";
 const setupView = document.getElementById("setup");
 const form = document.getElementsByTagName("form")[0];
 const slideshowContainer = document.getElementById("slideshow-container");
+const handoutContainer = document.getElementById("handout-container");
 let controller = null;
 
 /**
@@ -218,7 +219,7 @@ appInstance.registerAction(presentationAction.openBtn, presentationAction.openAs
 
 const handoutAction = new Handout(
 	form,
-	slideshowContainer,
+	handoutContainer,
 	onSuccess,
 	onFailure
 );

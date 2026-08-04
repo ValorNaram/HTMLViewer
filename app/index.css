@@ -219,3 +219,8 @@ p:last-child {
 	height: 100%;
 	box-sizing: border-box;
 }
+
+#handout-container {
+	box-sizing: border-box;
+	padding: 0.5em;
+}

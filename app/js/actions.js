@@ -1,5 +1,6 @@
 import { SlideController } from "../../lib/slides_controller";
 import { SlideGenerator } from "../../lib/slides_generator";
+import { HandoutGenerator } from "../../lib/handout_generator";
 
 /**
  * Prepare shadow DOM with styles.
@@ -174,17 +175,22 @@ export class Presentation {
 }
 
 export class Handout {
-	#openBtnQuery = "input[type=button][data-role='open-handout']"
+	#openBtnQuery = "input[type=button][data-role='open-handout']";
 	#openAsHandoutBtn = null;
 
 	/**
-	 * 
-	 * @param {HTMLFormElement} form 
-	 * @param {HTMLElement} resultContainer 
-	 * @param {function()} onSuccess 
+	 *
+	 * @param {HTMLFormElement} form
+	 * @param {HTMLElement} resultContainer
+	 * @param {function()} onSuccess
 	 * @param {function(Error)} onFailure
 	 */
-	constructor(form, resultContainer, onSuccess=() => {}, onFailure=() => {}) {
+	constructor(
+		form,
+		resultContainer,
+		onSuccess = () => {},
+		onFailure = () => {},
+	) {
 		this.form = form;
 		this.resultContainer = resultContainer;
 		this.onSuccess = onSuccess;
@@ -216,13 +222,13 @@ export class Handout {
 		try {
 			const shadow = prepareDOM(this.resultContainer, formContent.css);
 
-			shadow.append(...htmlContentContainer.children);
+			shadow.append(HandoutGenerator.createHandoutOutOfDocument(htmlContentContainer));
 			this.resultContainer.removeAttribute("hidden");
-			shadow.children.item(0).scrollTo({
+			setTimeout(() => this.resultContainer.scrollIntoView({
 				behavior: "auto",
 				top: 0,
-				left: 0
-			});
+				left: 0,
+			}), 0); // Schedule to the end of JS execution.
 			this.onSuccess();
 		} catch (error) {
 			this.onFailure(error);

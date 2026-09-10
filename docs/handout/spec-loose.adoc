@@ -1,0 +1,151 @@
+= HTML Handout Spec: Loose Version
+:sectnums: 
+:toclevels: 3
+:toc:
+
+== Definition of a handout
+
+A handout defines as a ordered set of _selected HTML elements_ and one `<h1>` inside a surrounding `<main>` element. There must be only one `<main>` element in the document. All other content making the handout are direct or indirect children of it.
+
+=== Children of `<main>` element
+
+The `<main>` element itself must
+
+* have a `<h1>` element as its first direct child
+* or a `<header>` element as its first direct child. The `<header>` must have a `<h1>` as its first direct child but makes no additional restrictions on what to put inside or not.
+
+=== `section` elements
+
+A `<section>` element only accepts the following elements as its first direct child:
+
+* A `<hX>` element: `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>` or `<h6>`
+* or `<header>` or `<hgroup` element where the first child of it is a `<hX>` element.
+
+It only accepts _selected HTML elements_ as its direct children.
+
+=== Content of a handout (selected HTML elements)
+
+Not all HTML elements should be direct children of a `<section>` element. Implementations must make sure that only elements matching any of the following criteria are included:
+
+* `<article>`
+* `<aside>`
+* `<audio>`
+* `<blockquote>`
+* `<code>`
+* `<del>`
+* `<details>`
+* `<dl>`
+* `<embed>`
+* `<figure>`
+* `<footer>`
+* `<h2>`
+* `<h3>`
+* `<h4>`
+* `<h5>`
+* `<h6>`
+* `<header>`
+* `<hr>`
+* `<iframe>`
+* `<img>`
+* `<ins>`
+* `<map>`
+* `<object>`
+* `<ol>`
+* `<p>`
+* `<picture>`
+* `<pre>`
+* `<progress>`
+* `<ruby>`
+* `<table>`
+* `<ul>`
+* `<video>`
+* Other `<section>` elements. Rules in this document also applies to them recursively.
+
+If elements match one of these criterias, they and their children must be added to the handout without changing their attributes and HTML code.
+
+== Class names on a handout
+
+Classes defined on the parent of the HTML heading element **in the original DOM** must be applied to the `<section>` HTML element in the target DOM.
+
+[.show_on_slide]
+.Example: Structure in source
+[source,html]
+----
+<div class="custom-handout-class">
+	<h2>An heading text</h2>
+	<!-- More content -->
+</div>
+----
+
+The structure on the source has the class `custom-handout-class` applied **on the parent** of the `<h2>` heading element. The heading `<h2>` HTML element here just serves as an example as the heading level does not matter.
+
+[.show_on_slide]
+.Example: Structure as main handout
+[source,html]
+----
+<section class="custom-handout-class">
+	<h2>An heading text</h2>
+	<!-- More selected HTML elements -->
+</section>
+----
+
+== Transformation examples
+
+Following this specification the following source DOM
+
+[.show_on_slide]
+.Example: Source HTML markup to transform
+[source,html]
+----
+<h1>A title</h1>
+<p>Introduction</p>
+<h2>An heading A</h2>
+<p>Introduction to 'An heading A'</p>
+<p>Another paragraph</p>
+<h2>An heading B</h2>
+<p>Topic introduction</p>
+<h3>A subheading B.1</h3>
+<p>Introduction to B.1</p>
+<p>Description of aspect B.1 of heading B</p>
+<h3>A subheading B.2</h3>
+<p>Introduction to B.2</p>
+<p>Description of aspect B.2 of heading B</p>
+<h2>An heading C</h2>
+<p>Introduction to 'An heading C'</p>
+<p>Longer explanation</p>
+----
+
+would be transformed to
+
+[.show_on_slide]
+.Example: Transformed HTML markup according to this spec
+[source,html]
+----
+<main>
+	<h1>A title</h1>
+	<p>Introduction</p>
+	<section>
+		<h2>An heading A</h2>
+		<p>Introduction to 'An heading A'</p>
+		<p>Another paragraph</p>
+	</section>
+	<section>
+		<h2>An heading B</h2>
+		<p>Topic introduction</p>
+		<section>
+			<h3>A subheading B.1</h3>
+			<p>Introduction to B.1</p>
+			<p>Description of aspect B.1 of heading B</p>
+		</section>
+		<section>
+			<h3>A subheading B.2</h3>
+			<p>Introduction to B.2</p>
+			<p>Description of aspect B.2 of heading B</p>
+		</section>
+	<section>
+		<h2>An heading C</h2>
+		<p>Introduction to 'An heading C'</p>
+		<p>Longer explanation</p>
+	</section>
+</main>
+----

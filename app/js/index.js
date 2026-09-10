@@ -191,7 +191,7 @@ class HTMLResourceController {
 	}
 }
 
-function onSuccess() {
+function onSuccessPresentationMode() {
 	setupView.setAttribute("hidden", "true");
 
 	// We need I18N to work in the shadow DOM too as we manage the messages on the helper slide.
@@ -212,7 +212,7 @@ const appInstance = new HTMLResourceController(form, slideshowContainer);
 const presentationAction = new Presentation(
 	form,
 	slideshowContainer,
-	onSuccess,
+	onSuccessPresentationMode,
 	onFailure
 );
 appInstance.registerAction(presentationAction.openBtn, presentationAction.openAsPresentation.bind(presentationAction))
@@ -220,7 +220,7 @@ appInstance.registerAction(presentationAction.openBtn, presentationAction.openAs
 const handoutAction = new Handout(
 	form,
 	handoutContainer,
-	onSuccess,
+	() => setupView.setAttribute("hidden", "true"),
 	onFailure
 );
 appInstance.registerAction(handoutAction.openBtn, handoutAction.openAsHandout.bind(handoutAction));

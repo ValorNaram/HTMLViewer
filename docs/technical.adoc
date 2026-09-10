@@ -1,0 +1,20 @@
+= HTML Viewer - Developer Documentation
+
+_HTML Viewer_ (working on a better name) is a web application making it extremely easy to change the representation of content dynamically. Write one document, export it to HTML, open it using _HTML Viewer_ and choose the occasion you want to use the HTML document in.
+
+Currently the web application can transform an embedded HTML document into a slide presentation for use on stage or into a handout for later reference and deep dive.
+
+This area contains the necessary developer documentation.
+
+== Specifications
+
+Specifications pave the way to understanding how an algorithm must work. An algorithm is vital for the functionality of changing the representation of content dynamically. Currently a HTML document can be transformed to a slide or handout dynamically without making changes to the document. This allows to use **one document for multiple scenarios**.
+
+* link:./spec/slide.adoc[HTML Slides] on how implementations must convert an embedded html document to a presentation with `<section>` elements used as slides.
+* link:./spec/handout-loose.adoc[HTML Handout Loose] telling implementations how to convert an embedded html document to a handout.
+
+== Integrations
+
+Sometimes using this from a Webbrowser alone is boring and does not integrate well with your personal workflow. To account for these, we have some integrations prepared for you:
+
+* link:./integrations/desktop-webbrowser.adoc[Webbrowser Desktop (Legacy)] is a linux script which needs to be installed manually. It compiles a `*.embedded.html` file on the fly inside the web application and opens it in your default webbrowser. This is not a good way on how to write an implementation for desktop use and is considered legacy.

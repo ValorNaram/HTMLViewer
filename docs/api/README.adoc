@@ -1,0 +1,13 @@
+= HTML Viewer - API
+
+HTML Viewer provides its transformation algorithm as independent libraries for use in other projects. Developers are free to integrate it into their own projects as long as they respect the license.
+
+All API documentations here currently lack a quickstart.
+
+== Generating slides
+
+The transformation algorithm to turn a HTML document into a slide presentation can be found in file `lib/slides_generator.js`.
+
+== Handout generation
+
+Handout generation with a HTML document as source is done by the code in file `lib/handout_generator.js`

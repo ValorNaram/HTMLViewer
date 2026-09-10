@@ -17,9 +17,4 @@ There is still no user manuals. The following will be created:
 
 == Technical
 
-* link:docs/slide/spec.adoc[Slide Spec]
-+
-An algorithm converts the document into slides. This specification describes how this is done and what the slides are allowed to contain.
-* link:docs/desktop-integration[Compiling a desktop integration (experimental)]
-+
-A very experimental idea for a desktop integration working on linux systems only. This allows to open files with file extension `.embed.html` from file browser.
+See link:./docs/technical.adoc[Developer documentation].

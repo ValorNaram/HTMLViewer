@@ -76,15 +76,26 @@ export class I18nManager {
 	 * @param {HTMLElement} container
 	 * @param {string} dataKey Name of the attribute on an HTML element telling the ID of the message to lookup
 	 */
-	constructor(messages, container = document.body, dataKey = "data-i18n") { this.messages = messages; this.#datakey = dataKey; this.#container = container;
- this.#setupObserver(); this.init();
+	constructor(messages, container = document.body, dataKey = "data-i18n") {
+		this.messages = messages;
+		this.#datakey = dataKey;
+		this.#container = container;
+		this.#setupObserver();
+		this.init();
 	}
 
-	init() { const elementList = this.#container.querySelectorAll(`*[${this.#datakey}]`); for (let elem of elementList) { 	this.lookupMessageAndSetToElem(elem, elem.getAttribute(this.#datakey)); }
+	init() {
+		const elementList = this.#container.querySelectorAll(`*[${this.#datakey}]`);
+		for (let elem of elementList) {
+			this.lookupMessageAndSetToElem(elem, elem.getAttribute(this.#datakey));
+		}
 	}
 
-	lookupKey(message_id) { if (this.messages[message_id] === undefined) { 	return null; }
- return this.messages[message_id];
+	lookupKey(message_id) {
+		if (this.messages[message_id] === undefined) {
+			return null;
+		}
+		return this.messages[message_id];
 	}
 
 	/**
@@ -92,7 +103,12 @@ export class I18nManager {
 	 * @param {HTMLElement} element
 	 * @param {string} message
 	 */
-	applyMessageOnElem(element, message) { if (element.tagName === "INPUT" || element.tagName === "textarea") { 	element.value = message; } else { 	element.textContent = message; }
+	applyMessageOnElem(element, message) {
+		if (element.tagName === "INPUT" || element.tagName === "textarea") {
+			element.value = message;
+		} else {
+			element.textContent = message;
+		}
 	}
 
 	/**
@@ -100,11 +116,48 @@ export class I18nManager {
 	 * @param {HTMLElement} element
 	 * @param {string} message_id
 	 */
-	lookupMessageAndSetToElem(element, message_id) { let message = this.lookupKey(message_id); if (message === null) { 	console.warn(`Cannot resolve i18n ID '${message_id}' to a message.`); 	message = "Here is text missing but I cannot tell what's missing!"; }
- this.applyMessageOnElem(element, message);
+	lookupMessageAndSetToElem(element, message_id) {
+		let message = this.lookupKey(message_id);
+		if (message === null) {
+			console.warn(`Cannot resolve i18n ID '${message_id}' to a message.`);
+			message = "Here is text missing but I cannot tell what's missing!";
+		}
+		this.applyMessageOnElem(element, message);
 	}
 
-	#setupObserver() { /**  *  * @param {MutationRecord[]} mutations  */ const handleMutations = (mutations) => { 	mutations.forEach( 		/** 		 * @param {Node} MutationRecord 		 * */ 		(mutation) => { 			mutation.addedNodes.forEach( 				/** 				 * 				 * @param {Node} node 				 */ 				(node) => { 					if ( 						node.nodeType === Node.ELEMENT_NODE && 						node.hasAttribute(this.#datakey) 					) { 						this.lookupMessageAndSetToElem( 							node, 							node.getAttribute(this.#datakey) 						); 					} 				} 			); 		} 	); };
- const mutationObserver = new MutationObserver(handleMutations); mutationObserver.observe(this.#container, { 	childList: true, 	subtree: true, });
+	#setupObserver() {
+		/**
+		 * @param {MutationRecord[]} mutations
+		 */
+		const handleMutations = (mutations) => {
+			mutations.forEach(
+				/**
+				 * @param {Node} MutationRecord
+				 */
+				(mutation) => {
+					mutation.addedNodes.forEach(
+						/**
+						 * @param {Node} node
+						 * */
+						(node) => {
+							if (
+								node.nodeType === Node.ELEMENT_NODE &&
+								node.hasAttribute(this.#datakey)
+							) {
+								this.lookupMessageAndSetToElem(
+									node,
+									node.getAttribute(this.#datakey)
+								);
+							}
+						}
+					);
+				}
+			);
+		};
+		const mutationObserver = new MutationObserver(handleMutations);
+		mutationObserver.observe(this.#container, {
+			childList: true,
+			subtree: true,
+		});
 	}
 }

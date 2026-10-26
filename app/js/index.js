@@ -138,7 +138,7 @@ class HTMLResourceController {
 			return cssFiles;
 		}
 		
-		return Array.from(cssInput.values()).map((styleElem) => styleElem.textContent)
+		return Array.from(cssInput.values()).map((styleElem) => styleElem.content.textContent)
 	}
 
 	/**

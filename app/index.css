@@ -51,7 +51,7 @@ html, body {
 	height: 100%;
 	width: 100%;
 	margin: 0;
-	line-height: 1.8em;
+	line-height: 2.5em;
 
 	background-color: var(--bg-color);
 	color: var(--text-color);
@@ -151,25 +151,25 @@ form input[type=file]:hover, form input[type=button]:hover {
 }
 
 @container area (max-width: 1600px) {
-	#setup>* {
+	#setup>*, #handout-container {
 		flex-basis: 60%;
 	}
 }
 
 @container area (max-width: 1400px) {
-	#setup>* {
+	#setup>*, #handout-container {
 		flex-basis: 70%;
 	}
 }
 
 @container area (max-width: 1200px) {
-	#setup>* {
+	#setup>*, #handout-container {
 		flex-basis: 80%;
 	}
 }
 
 @container area (max-width: 900px) {
-	#setup > * {
+	#setup > *, #handout-container {
 		flex-basis: 100%;
 	}
 }
@@ -222,5 +222,9 @@ p:last-child {
 
 #handout-container {
 	box-sizing: border-box;
-	padding: 0.5em;
+	/* padding: 0.5em 20%; */
+	width: 100%;
+	/* display: flex; */
+	/* container-type: size; */
+	container-name: area;
 }

@@ -5,9 +5,14 @@ html, body {
 	height: 100%;
 }
 
+:root, :host {
+	font-size: 25px;
+	background-color: white;
+	color: black;
+}
+
 * {
 	box-sizing: border-box;
-	font-size: 25px;
 }
 
 section.slide {
@@ -49,7 +54,6 @@ section.slide > h6:first-child {
 
 /* Apply on <img> in slide mode */
 section.slide img {
-	/* width: 100%; */
 	height: auto;
 	break-inside: avoid;
 	break-after: avoid;
@@ -69,7 +73,7 @@ section.slide img {
 		display: none;
 	}
 
-	 h1, h2, h3, h4, h5, h6 {
+	h1, h2, h3, h4, h5, h6 {
 		page-break-after: avoid;
 		orphans: 10;
 		widows: 10;

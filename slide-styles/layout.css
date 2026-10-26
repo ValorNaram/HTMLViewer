@@ -1,20 +1,36 @@
 /* Implement two column layout if an image and a (un)sorted list share the same parent */
 
 /*   img comes first, then list */
-img:has(+ ol, + ul), img + ol, img + ul {
-	width: 50%;
+section.slide, section.subslide {
+	img:has(+ ol, + ul), img + ol, img + ul,
+	/*   list comes first, img second */
+	ol:has(+ img, + ul), ul:has(+ img, + ol), ol + img, ol + ul, ul + img, ol + img {
+		width: 50%;
 
-	/* The following would be necessary if the slide body is not a flex container */
-	display: inline-block;
-	vertical-align: top;
-	padding: 0 1.15em;
+		/* The following would be necessary if the slide body is not a flex container */
+		display: inline-block;
+		vertical-align: top;
+		padding: 0 1.15em;
+	}
 }
 
 /*   list comes first, img second */
-ol:has(+ img, + ul), ul:has(+ img, + ol), ol + img, ol + ul, ul + img, ol + img {
+/* ol:has(+ img, + ul), ul:has(+ img, + ol), ol + img, ol + ul, ul + img, ol + img {
 	width: 50%;
-	/* The following would be necessary if the slide body is not a flex container */
 	display: inline-block;
 	vertical-align: top;
 	padding: 0 1.15em;
+} */
+
+/* Single layout */
+
+/*    Single Image */
+section.slide    > div > *:only-child,
+section.subslide > div > *:only-child {
+	width: 100%;
+}
+
+/* Pictures */
+img {
+	max-width: 100%;
 }

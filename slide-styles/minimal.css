@@ -1,18 +1,10 @@
-html, body {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-}
-
 :root, :host {
-	font-size: 25px;
-	background-color: white;
-	color: black;
+	font-size: 15px;
 }
 
-* {
+:host * {
 	box-sizing: border-box;
+	max-width: 100%;
 }
 
 section.slide {
@@ -25,6 +17,26 @@ section.slide {
 
 :host h1 {
 	text-align: center;
+}
+
+p {
+	line-height: 2.25em;
+}
+
+li {
+	line-height: 2em;
+}
+
+svg, img {
+	background-color: white;
+}
+
+a {
+	color: var(--link-color);
+}
+
+a:visited {
+	color: var(--link-color-visited);
 }
 
 /* Apply only on <h2> elements in slide mode */
@@ -69,17 +81,23 @@ section.slide img {
 		padding: 0;
 	}
 
-	 section.slide.instruction {
+	section.slide.instruction {
 		display: none;
 	}
 
-	h1, h2, h3, h4, h5, h6 {
+	section.slide h1,
+	section.slide h2,
+	section.slide h3, section.subslide h3,
+	section.slide h4, section.subslide h4,
+	section.slide h5, section.subslide h5,
+	section.slide h6, section.subslide h6 {
 		page-break-after: avoid;
 		orphans: 10;
 		widows: 10;
 	}
 
-	p {
+	section.slide p,
+	section.subslide p {
 		page-break-inside: avoid;
 	}	
 }

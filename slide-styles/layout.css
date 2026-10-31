@@ -1,3 +1,8 @@
+/* Make instruction slide visuslly stand out */
+section.slide.instruction {
+	border: 1em solid darkcyan
+}
+
 /* Implement two column layout if an image and a (un)sorted list share the same parent */
 
 /*   img comes first, then list */
@@ -31,6 +36,7 @@ section.subslide > div > *:only-child {
 }
 
 /* Pictures */
-img {
+section.slide img,
+section.subslide {
 	max-width: 100%;
 }

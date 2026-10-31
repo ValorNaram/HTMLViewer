@@ -11,3 +11,4 @@ package-lock.json
 examples-slide
 offline.js
 .vscode
+compile_html_viewer

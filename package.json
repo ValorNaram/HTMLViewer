@@ -5,8 +5,8 @@
   "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "start": "webpack serve --mode development --config webpack.dev.js",
+    "build": "webpack --mode production --config webpack.prod.js ; node create-bin.js"
   },
   "keywords": [],
   "author": "Sören Reinecke alias Valor Naram",
@@ -19,3 +19,4 @@
     "webpack-dev-server": "^5.2.5"
   }
 }
+

@@ -8,9 +8,7 @@ This script is part of the desktop integration.
 */
 
 // Configuration
-const JS_BUNDLE_PATH = 'dist/HTMLSlideshow-bundle.js';
-const CSS_BUNDLE_PATH = 'app/index.css';
-const HTML_BUNDLE_PATH = 'app/index.html'
+const HTML_BUNDLE_PATH = 'bin/HTMLViewer.html'
 
 /**
  * Generates the html bundle of the HTMLSlideshow web application needed to run it without the need of loading external resources.
@@ -18,10 +16,8 @@ const HTML_BUNDLE_PATH = 'app/index.html'
 async function prepare_html_bundle() {
 	
 	// Read the HTML, JS and CSS bundle files
-	const [htmlBundleContent, jsBundleContent, cssBundleContent] = await Promise.all([
+	const [htmlBundleContent] = await Promise.all([
 		fs.readFile(HTML_BUNDLE_PATH, 'utf-8'),
-		fs.readFile(JS_BUNDLE_PATH, 'utf-8'),
-		fs.readFile(CSS_BUNDLE_PATH, 'utf-8'),
 	]);
 
 	return htmlBundleContent
@@ -30,10 +26,6 @@ async function prepare_html_bundle() {
 		// removing all <script> elements with src
 		.replaceAll(new RegExp('<script.*?src.*?=.*?>.*?</script>', "gm"), '')
 		.replaceAll('"', '\"')
-		// inserting the JS bundle after the <head> element
-		.replace('</head>', `<script type="module">${jsBundleContent}</script></head>`)
-		// inserting the CSS bundle after the <head> element
-		.replace('</head>', `<style>${cssBundleContent}</style></head>`)
 		// inserting the <template> element which is being used to store the HTML document the user wants to open without it being parsed. This is being populated by the bash script.
 		// .replace('<body>', '<body><template data-role="html-content" style="display:none">${embedded_html_file_content}</template>')
 		// removing the label of the html document input element

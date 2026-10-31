@@ -147,12 +147,6 @@ export class Presentation {
 		helperSlide.style.height = "100%";
 
 		const helperContainer = document.createElement("div");
-		helperContainer.style.height = "100%";
-		helperContainer.style.border = "0.2em solid darkcyan";
-		helperContainer.style.borderRadius = "1em";
-		helperContainer.style.boxSizing = "border-box";
-		helperContainer.style.backgroundColor = "hsl(180, 100%, 85%)";
-		helperContainer.style.color = "black";
 
 		const helperSlideContent = `
 			<h1 data-i18n="helper_slide_title"></h1>

@@ -26,7 +26,7 @@
 		--text-color: black;
 		--focus-color: rgb(255, 85, 0);
 
-		--border-color-interactivity: black;
+		--border-color-interactivity: hsl(0, 1%, 25%);
 		--border-color: hsl(209, 100%, 29%);
 
 		--bg-color-secondary: hsl(199.8, 100%, 67.8%);
@@ -137,6 +137,10 @@ form input[type=file], form input[type=button] {
 	font-weight: bold;
 	min-width: 100%;
 	box-sizing: border-box;
+}
+
+input[type="file"]::file-selector-button {
+	display: none;
 }
 
 form input[type=file]:hover, form input[type=file]:focus, form input[type=button]:hover, form input[type=button]:focus {
@@ -273,5 +277,20 @@ form input[type=radio]:checked {
 @media screen and (max-width: 900px) {
 	#handout-container {
 		padding: 0.5em 0.5em;
+	}
+}
+
+@media (forced-colors: active) {
+	:root {
+		--text-color: CanvasText;
+		--bg-color: Canvas;
+		--bg-color-secondary: Canvas;
+		--focus-color: AccentColor;
+		--border-color: CanvasText;
+		--border-color-interactivity: ButtonBorder;
+	}
+
+	input[type=button]:hover, button:hover, input[type=file]:hover, input[type=file]:focus {
+		border-color: Highlight;
 	}
 }
